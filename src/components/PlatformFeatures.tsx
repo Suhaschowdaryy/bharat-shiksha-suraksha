@@ -17,6 +17,7 @@ import virtualDrillsImage from "@/assets/virtual-drills.jpg";
 const PlatformFeatures = () => {
   const coreFeatures = [
     {
+      id: "learning",
       icon: BookOpen,
       title: "Interactive Learning Modules",
       description: "Comprehensive disaster education content tailored for different age groups and regional hazards",
@@ -24,6 +25,7 @@ const PlatformFeatures = () => {
       image: learningModulesImage
     },
     {
+      id: "gamified",
       icon: Gamepad2,
       title: "Gamified Learning Experience",
       description: "Engaging game-based learning that makes disaster preparedness fun and memorable",
@@ -31,6 +33,7 @@ const PlatformFeatures = () => {
       image: virtualDrillsImage
     },
     {
+      id: "alerts",
       icon: AlertCircle,
       title: "Real-time Regional Alerts",
       description: "Location-based emergency notifications and weather alerts integrated with educational content",
@@ -38,6 +41,7 @@ const PlatformFeatures = () => {
       image: null
     },
     {
+      id: "communication",
       icon: Phone,
       title: "Emergency Communication Hub",
       description: "Instant communication system connecting students, teachers, parents, and emergency services",
@@ -113,8 +117,21 @@ const PlatformFeatures = () => {
                     </Badge>
                   ))}
                 </div>
-                <Button variant="outline" className="w-full">
-                  Learn More
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={() => {
+                    if (feature.id === 'learning') {
+                      window.open('/learning-modules', '_blank');
+                    } else if (feature.id === 'gamified') {
+                      window.open('/quiz', '_blank');
+                    } else {
+                      window.open('/virtual-drills', '_blank');
+                    }
+                  }}
+                >
+                  {feature.id === 'learning' ? 'Start Learning' : 
+                   feature.id === 'gamified' ? 'Take Quiz' : 'Learn More'}
                 </Button>
               </CardContent>
             </Card>
