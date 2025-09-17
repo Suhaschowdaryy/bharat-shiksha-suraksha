@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { 
   BookOpen, 
   Gamepad2, 
@@ -15,6 +16,7 @@ import learningModulesImage from "@/assets/learning-modules.jpg";
 import virtualDrillsImage from "@/assets/virtual-drills.jpg";
 
 const PlatformFeatures = () => {
+  const navigate = useNavigate();
   const coreFeatures = [
     {
       id: "learning",
@@ -122,16 +124,16 @@ const PlatformFeatures = () => {
                   className="w-full"
                   onClick={() => {
                     if (feature.id === 'learning') {
-                      window.open('/learning-modules', '_blank');
+                      navigate('/learning');
                     } else if (feature.id === 'gamified') {
-                      window.open('/quiz', '_blank');
-                    } else {
-                      window.open('/virtual-drills', '_blank');
+                      navigate('/quiz');
+                    } else if (feature.id === 'alerts' || feature.id === 'communication') {
+                      navigate('/drills');
                     }
                   }}
                 >
                   {feature.id === 'learning' ? 'Start Learning' : 
-                   feature.id === 'gamified' ? 'Take Quiz' : 'Learn More'}
+                   feature.id === 'gamified' ? 'Take Quiz' : 'Explore Features'}
                 </Button>
               </CardContent>
             </Card>
